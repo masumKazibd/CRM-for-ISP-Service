@@ -5,6 +5,12 @@ namespace CRM_ISP.Models
 {
     public class Complain
     {
+        public Complain()
+        {
+            this.ComplainStatuses = new List<ComplainStatus>();
+            this.Feedbacks = new List<Feedback>();
+            this.UserComplains = new List<UserComplain>();
+        }
         public int ComplainId { get; set; }
         [Required, Display(Name = "Complain Type")]
         public string ComplainType { get; set; } = default!;
@@ -12,18 +18,18 @@ namespace CRM_ISP.Models
         public string ComplainDetails { get; set; } = default!;
         public DateTime ComplainDate { get; set; } = DateTime.Now;
 
-        //Foreign Key
-        [ForeignKey("User")]
-        public int UserId { get; set; }
-        [ForeignKey("Area")]
-        public int AreaId { get; set; }
+        ////Foreign Key
+        //[ForeignKey("User")]
+        //public int UserId { get; set; }
+        //[ForeignKey("Area")]
+        //public int AreaId { get; set; }
 
 
-        public  virtual User? User { get; set; }
-        public virtual Area? Area { get; set; }
+        //public  virtual User? User { get; set; }
+        //public virtual Area? Area { get; set; }
 
         public virtual ICollection<ComplainStatus>? ComplainStatuses { get; set; }
-
+        public virtual ICollection<UserComplain> UserComplains { get; set; }
         public virtual ICollection<Feedback>? Feedbacks { get; set; }
 
 

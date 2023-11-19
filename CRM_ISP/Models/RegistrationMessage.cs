@@ -2,7 +2,7 @@
 
 namespace CRM_ISP.Models
 {
-    public class Registration
+    public class RegistrationMessage
     {
         public int RegistrationMessageId { get; set; }
         [Required, StringLength(200), Display(Name = "Message Body")]
