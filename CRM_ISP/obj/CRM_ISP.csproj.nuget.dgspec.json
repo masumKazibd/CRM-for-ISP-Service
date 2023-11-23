@@ -1,20 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Final Project\\CRM_ISP\\CRM_ISP\\CRM_ISP.csproj": {}
+    "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj": {}
   },
   "projects": {
-    "D:\\Final Project\\CRM_ISP\\CRM_ISP\\CRM_ISP.csproj": {
+    "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Final Project\\CRM_ISP\\CRM_ISP\\CRM_ISP.csproj",
+        "projectUniqueName": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
         "projectName": "CRM_ISP",
-        "projectPath": "D:\\Final Project\\CRM_ISP\\CRM_ISP\\CRM_ISP.csproj",
+        "projectPath": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
         "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "D:\\Final Project\\CRM_ISP\\CRM_ISP\\obj\\",
+        "outputPath": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
         "configFilePaths": [
           "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -22,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -71,6 +76,10 @@
               "suppressParent": "All",
               "target": "Package",
               "version": "[7.0.14, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[7.0.9, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
