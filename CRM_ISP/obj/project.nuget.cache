@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "edBqMTJ+UxWi0f57piiCO4TXd23hQlAczM3JAENR9t8jCnAelI8k0A4oMKwcj087H5dX/qZ6hzoG+U1rbKzGrA==",
   "success": true,
   "projectFilePath": "D:\\final project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
+=======
+  "dgSpecHash": "OhUXk9CkD5kgTPfvHvrOPl4CXViYullg7zaE/HZypOu7ebAUtUUKlQXlcpJMphJEBF7JqxUntrRw4ZVP5avNEg==",
+  "success": true,
+  "projectFilePath": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
+>>>>>>> 87b6422579d884ac1edae5f84e5d4c06125f4353
   "expectedPackageFiles": [
     "C:\\Users\\student\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
