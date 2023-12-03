@@ -17,8 +17,8 @@ namespace CRM_ISP.Migrations
                 {
                     AreaId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AreaName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PostCode = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    AreaName = table.Column<string>(type: "nvarchar(70)", maxLength: 70, nullable: false),
+                    PostCode = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -31,7 +31,7 @@ namespace CRM_ISP.Migrations
                 {
                     CityId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    CityName = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    CityName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -44,13 +44,28 @@ namespace CRM_ISP.Migrations
                 {
                     ComplainId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    ComplainType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComplainDetails = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    ComplainDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    ComplainType = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
+                    ComplainDetails = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    ComplaintDate = table.Column<DateTime>(type: "date", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Complaines", x => x.ComplainId);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Employees",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Company = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Position = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Employees", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -59,10 +74,10 @@ namespace CRM_ISP.Migrations
                 {
                     PackageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    PackageName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    PackageName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     PackagePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
-                    PackageType = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    PackageDuration = table.Column<int>(type: "int", nullable: false)
+                    PackageType = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
+                    PackageDuration = table.Column<int>(type: "int", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -75,7 +90,7 @@ namespace CRM_ISP.Migrations
                 {
                     RegistrationMessageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MessageBody = table.Column<string>(type: "nvarchar(200)", maxLength: 200, nullable: false)
+                    MessageBody = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -96,13 +111,27 @@ namespace CRM_ISP.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "UserRoles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserEmail = table.Column<int>(type: "int", nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_UserRoles", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "ComplainesStatuses",
                 columns: table => new
                 {
                     ComplainStatusId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    StatusType = table.Column<bool>(type: "bit", nullable: false),
-                    ComplainId = table.Column<int>(type: "int", nullable: false)
+                    ComplainStatusType = table.Column<bool>(type: "bit", nullable: false),
+                    ComplainId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -111,8 +140,7 @@ namespace CRM_ISP.Migrations
                         name: "FK_ComplainesStatuses_Complaines_ComplainId",
                         column: x => x.ComplainId,
                         principalTable: "Complaines",
-                        principalColumn: "ComplainId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ComplainId");
                 });
 
             migrationBuilder.CreateTable(
@@ -121,12 +149,13 @@ namespace CRM_ISP.Migrations
                 {
                     AdminId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    AdminName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AdminGender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    AdminPhone = table.Column<int>(type: "int", nullable: false),
-                    AdminPassword = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    AdminName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AdminEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    Gender = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    JoinDate = table.Column<DateTime>(type: "date", nullable: false),
+                    Phone = table.Column<int>(type: "int", nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -135,8 +164,7 @@ namespace CRM_ISP.Migrations
                         name: "FK_Admins_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoleId");
                 });
 
             migrationBuilder.CreateTable(
@@ -145,14 +173,15 @@ namespace CRM_ISP.Migrations
                 {
                     SupportEngineerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    SupportEngineerName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SupportEngineerEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    date = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    SupportEngineerGender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SupportEngineerPhone = table.Column<int>(type: "int", nullable: false),
-                    SupportEngineerPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AreaId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    EngineerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    EngineerEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    EngineerJoinDate = table.Column<DateTime>(type: "date", nullable: false),
+                    EngineerGender = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserImage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    EngineerPhone = table.Column<int>(type: "int", maxLength: 50, nullable: false),
+                    EngineerPassword = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    AreaId = table.Column<int>(type: "int", nullable: true),
+                    RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -161,14 +190,12 @@ namespace CRM_ISP.Migrations
                         name: "FK_SupportEngineers_Areas_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Areas",
-                        principalColumn: "AreaId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "AreaId");
                     table.ForeignKey(
                         name: "FK_SupportEngineers_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoleId");
                 });
 
             migrationBuilder.CreateTable(
@@ -177,17 +204,18 @@ namespace CRM_ISP.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserPassword = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    UserPhone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
                     UserGender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserCreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    CityId = table.Column<int>(type: "int", nullable: false),
-                    AreaId = table.Column<int>(type: "int", nullable: false),
-                    RoleId = table.Column<int>(type: "int", nullable: false)
+                    UserImage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserCreateDate = table.Column<DateTime>(type: "date", nullable: false),
+                    CityId = table.Column<int>(type: "int", nullable: true),
+                    AreaId = table.Column<int>(type: "int", nullable: true),
+                    PackageId = table.Column<int>(type: "int", nullable: true),
+                    RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -196,20 +224,22 @@ namespace CRM_ISP.Migrations
                         name: "FK_Users_Areas_AreaId",
                         column: x => x.AreaId,
                         principalTable: "Areas",
-                        principalColumn: "AreaId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "AreaId");
                     table.ForeignKey(
                         name: "FK_Users_Cities_CityId",
                         column: x => x.CityId,
                         principalTable: "Cities",
-                        principalColumn: "CityId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "CityId");
+                    table.ForeignKey(
+                        name: "FK_Users_Packages_PackageId",
+                        column: x => x.PackageId,
+                        principalTable: "Packages",
+                        principalColumn: "PackageId");
                     table.ForeignKey(
                         name: "FK_Users_Roles_RoleId",
                         column: x => x.RoleId,
                         principalTable: "Roles",
-                        principalColumn: "RoleId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "RoleId");
                 });
 
             migrationBuilder.CreateTable(
@@ -218,9 +248,9 @@ namespace CRM_ISP.Migrations
                 {
                     BillingId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Status = table.Column<bool>(type: "bit", nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    PackageId = table.Column<int>(type: "int", nullable: false)
+                    BillingStatus = table.Column<bool>(type: "bit", nullable: false),
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    PackageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -229,42 +259,38 @@ namespace CRM_ISP.Migrations
                         name: "FK_Billings_Packages_PackageId",
                         column: x => x.PackageId,
                         principalTable: "Packages",
-                        principalColumn: "PackageId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PackageId");
                     table.ForeignKey(
                         name: "FK_Billings_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
                 name: "Feedbacks",
                 columns: table => new
                 {
-                    FeedbackId = table.Column<int>(type: "int", nullable: false)
+                    FeedBackId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Rating = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     RatingMessage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ComplainId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    ComplainId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Feedbacks", x => x.FeedbackId);
+                    table.PrimaryKey("PK_Feedbacks", x => x.FeedBackId);
                     table.ForeignKey(
                         name: "FK_Feedbacks_Complaines_ComplainId",
                         column: x => x.ComplainId,
                         principalTable: "Complaines",
-                        principalColumn: "ComplainId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ComplainId");
                     table.ForeignKey(
                         name: "FK_Feedbacks_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -273,8 +299,9 @@ namespace CRM_ISP.Migrations
                 {
                     UserComplainId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    ComplainId = table.Column<int>(type: "int", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    ComplainId = table.Column<int>(type: "int", nullable: true),
+                    PackageId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -283,14 +310,17 @@ namespace CRM_ISP.Migrations
                         name: "FK_UserComplain_Complaines_ComplainId",
                         column: x => x.ComplainId,
                         principalTable: "Complaines",
-                        principalColumn: "ComplainId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "ComplainId");
+                    table.ForeignKey(
+                        name: "FK_UserComplain_Packages_PackageId",
+                        column: x => x.PackageId,
+                        principalTable: "Packages",
+                        principalColumn: "PackageId");
                     table.ForeignKey(
                         name: "FK_UserComplain_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateTable(
@@ -299,9 +329,9 @@ namespace CRM_ISP.Migrations
                 {
                     UserPackageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
-                    PackageId = table.Column<int>(type: "int", nullable: false),
-                    PackageStartDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    UserId = table.Column<int>(type: "int", nullable: true),
+                    PackageId = table.Column<int>(type: "int", nullable: true),
+                    PackageStartDate = table.Column<DateTime>(type: "datetime2", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -310,14 +340,12 @@ namespace CRM_ISP.Migrations
                         name: "FK_UsersPackages_Packages_PackageId",
                         column: x => x.PackageId,
                         principalTable: "Packages",
-                        principalColumn: "PackageId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "PackageId");
                     table.ForeignKey(
                         name: "FK_UsersPackages_Users_UserId",
                         column: x => x.UserId,
                         principalTable: "Users",
-                        principalColumn: "UserId",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "UserId");
                 });
 
             migrationBuilder.CreateIndex(
@@ -366,6 +394,11 @@ namespace CRM_ISP.Migrations
                 column: "ComplainId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_UserComplain_PackageId",
+                table: "UserComplain",
+                column: "PackageId");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_UserComplain_UserId",
                 table: "UserComplain",
                 column: "UserId");
@@ -379,6 +412,11 @@ namespace CRM_ISP.Migrations
                 name: "IX_Users_CityId",
                 table: "Users",
                 column: "CityId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Users_PackageId",
+                table: "Users",
+                column: "PackageId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_RoleId",
@@ -409,6 +447,9 @@ namespace CRM_ISP.Migrations
                 name: "ComplainesStatuses");
 
             migrationBuilder.DropTable(
+                name: "Employees");
+
+            migrationBuilder.DropTable(
                 name: "Feedbacks");
 
             migrationBuilder.DropTable(
@@ -421,13 +462,13 @@ namespace CRM_ISP.Migrations
                 name: "UserComplain");
 
             migrationBuilder.DropTable(
+                name: "UserRoles");
+
+            migrationBuilder.DropTable(
                 name: "UsersPackages");
 
             migrationBuilder.DropTable(
                 name: "Complaines");
-
-            migrationBuilder.DropTable(
-                name: "Packages");
 
             migrationBuilder.DropTable(
                 name: "Users");
@@ -437,6 +478,9 @@ namespace CRM_ISP.Migrations
 
             migrationBuilder.DropTable(
                 name: "Cities");
+
+            migrationBuilder.DropTable(
+                name: "Packages");
 
             migrationBuilder.DropTable(
                 name: "Roles");

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using CRM_ISP.Models;
 
 namespace CRM_ISP.Models
 {
@@ -21,6 +22,10 @@ namespace CRM_ISP.Models
         public DbSet<User>?  Users { get; set; }
         public DbSet<UserPackage>? UsersPackages { get; set; }
 
-
+        //public DbSet<AddUserRole>? AddUserRoles { get; set; }
+        //public DbSet<LoginRequest>? LoginRequests { get; set; }
+        public DbSet<UserRoles>? UserRoles { get; set; }
+        public DbSet<Employee> Employees { get; set; }
+        public DbSet<CRM_ISP.Models.UserComplain> UserComplain { get; set; } = default!;
     }
 }

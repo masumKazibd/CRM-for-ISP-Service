@@ -1,19 +1,26 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CRM_ISP.Models
 {
     public class Billing
     {
         public int BillingId { get; set; }
-        public bool Status { get; set; } = false;
-        //Forign Key
+        [Display(Name = "Billing Status")]
+
+        public bool BillingStatus { get; set; }
         [ForeignKey("User")]
-        public int UserId { get; set; }
+
+        public int? UserId { get; set; }
         [ForeignKey("Package")]
-        public int PackageId { get; set; }
-        public virtual User? User { get; set; } 
+        public int? PackageId { get; set; }
+
+        public DateTime BillingDate { get; set; } = DateTime.Now;
+
+
         public virtual Package? Package { get; set; }
-         
-       
+
+        public virtual User? User { get; set; }
+
     }
 }

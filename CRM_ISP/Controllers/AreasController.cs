@@ -20,7 +20,6 @@ namespace CRM_ISP.Controllers
             _context = context;
         }
 
-        // GET: api/Areas
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Area>>> GetAreas()
         {
@@ -31,7 +30,6 @@ namespace CRM_ISP.Controllers
             return await _context.Areas.ToListAsync();
         }
 
-        // GET: api/Areas/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Area>> GetArea(int id)
         {
@@ -49,8 +47,6 @@ namespace CRM_ISP.Controllers
             return area;
         }
 
-        // PUT: api/Areas/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
         public async Task<IActionResult> PutArea(int id, Area area)
         {
@@ -80,8 +76,6 @@ namespace CRM_ISP.Controllers
             return NoContent();
         }
 
-        // POST: api/Areas
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
         public async Task<ActionResult<Area>> PostArea(Area area)
         {
@@ -95,7 +89,6 @@ namespace CRM_ISP.Controllers
             return CreatedAtAction("GetArea", new { id = area.AreaId }, area);
         }
 
-        // DELETE: api/Areas/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteArea(int id)
         {

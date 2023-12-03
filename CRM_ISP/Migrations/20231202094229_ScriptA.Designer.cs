@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CRM_ISP.Migrations
 {
     [DbContext(typeof(CrmDbContext))]
-    [Migration("20231119120855_ScriptA")]
+    [Migration("20231202094229_ScriptA")]
     partial class ScriptA
     {
         /// <inheritdoc />
@@ -33,25 +33,33 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
 
-                    b.Property<string>("AdminGender")
+                    b.Property<string>("AdminEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("AdminJoinDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("AdminName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("AdminPassword")
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<DateTime>("JoinDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("Password")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<int>("Phone")
                         .HasColumnType("int");
 
-                    b.Property<int>("AdminPhone")
-                        .HasColumnType("int");
-
-                    b.Property<int>("RoleId")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
                     b.HasKey("AdminId");
@@ -71,11 +79,11 @@ namespace CRM_ISP.Migrations
 
                     b.Property<string>("AreaName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(70)
+                        .HasColumnType("nvarchar(70)");
 
-                    b.Property<string>("PostCode")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PostCode")
+                        .HasColumnType("int");
 
                     b.HasKey("AreaId");
 
@@ -90,13 +98,13 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BillingId"));
 
-                    b.Property<int>("PackageId")
-                        .HasColumnType("int");
-
-                    b.Property<bool>("Status")
+                    b.Property<bool>("BillingStatus")
                         .HasColumnType("bit");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("BillingId");
@@ -118,7 +126,8 @@ namespace CRM_ISP.Migrations
 
                     b.Property<string>("CityName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("CityId");
 
@@ -133,16 +142,18 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ComplainId"));
 
-                    b.Property<DateTime>("ComplainDate")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("ComplainDetails")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
 
                     b.Property<string>("ComplainType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("ComplaintDate")
+                        .HasColumnType("date");
 
                     b.HasKey("ComplainId");
 
@@ -157,10 +168,10 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ComplainStatusId"));
 
-                    b.Property<int>("ComplainId")
+                    b.Property<int?>("ComplainId")
                         .HasColumnType("int");
 
-                    b.Property<bool>("StatusType")
+                    b.Property<bool>("ComplainStatusType")
                         .HasColumnType("bit");
 
                     b.HasKey("ComplainStatusId");
@@ -170,15 +181,40 @@ namespace CRM_ISP.Migrations
                     b.ToTable("ComplainesStatuses");
                 });
 
-            modelBuilder.Entity("CRM_ISP.Models.Feedback", b =>
+            modelBuilder.Entity("CRM_ISP.Models.Employee", b =>
                 {
-                    b.Property<int>("FeedbackId")
+                    b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedbackId"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("ComplainId")
+                    b.Property<string>("Company")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Position")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Employees");
+                });
+
+            modelBuilder.Entity("CRM_ISP.Models.Feedback", b =>
+                {
+                    b.Property<int>("FeedBackId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("FeedBackId"));
+
+                    b.Property<int?>("ComplainId")
                         .HasColumnType("int");
 
                     b.Property<string>("Rating")
@@ -191,10 +227,10 @@ namespace CRM_ISP.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
-                    b.HasKey("FeedbackId");
+                    b.HasKey("FeedBackId");
 
                     b.HasIndex("ComplainId");
 
@@ -212,19 +248,21 @@ namespace CRM_ISP.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PackageId"));
 
                     b.Property<int>("PackageDuration")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.Property<string>("PackageName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.Property<decimal>("PackagePrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("PackageType")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(60)
+                        .HasColumnType("nvarchar(60)");
 
                     b.HasKey("PackageId");
 
@@ -241,8 +279,8 @@ namespace CRM_ISP.Migrations
 
                     b.Property<string>("MessageBody")
                         .IsRequired()
-                        .HasMaxLength(200)
-                        .HasColumnType("nvarchar(200)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("RegistrationMessageId");
 
@@ -275,34 +313,43 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("SupportEngineerId"));
 
-                    b.Property<int>("AreaId")
+                    b.Property<int?>("AreaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoleId")
+                    b.Property<string>("EngineerEmail")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("EngineerGender")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("EngineerJoinDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("EngineerName")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("EngineerPassword")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<int>("EngineerPhone")
+                        .HasMaxLength(50)
                         .HasColumnType("int");
 
-                    b.Property<string>("SupportEngineerEmail")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SupportEngineerGender")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("SupportEngineerJoinDate")
-                        .HasColumnType("datetime2")
-                        .HasColumnName("date");
-
-                    b.Property<string>("SupportEngineerName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("SupportEngineerPassword")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("SupportEngineerPhone")
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
+
+                    b.Property<string>("UserImage")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.HasKey("SupportEngineerId");
 
@@ -321,25 +368,30 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserId"));
 
-                    b.Property<int>("AreaId")
+                    b.Property<int?>("AreaId")
                         .HasColumnType("int");
 
-                    b.Property<int>("CityId")
+                    b.Property<int?>("CityId")
                         .HasColumnType("int");
 
-                    b.Property<int>("RoleId")
+                    b.Property<int?>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
                     b.Property<string>("UserAddress")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<DateTime>("UserCreateDate")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("date");
 
                     b.Property<string>("UserEmail")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserGender")
                         .IsRequired()
@@ -347,25 +399,31 @@ namespace CRM_ISP.Migrations
 
                     b.Property<string>("UserImage")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("UserPassword")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<string>("UserPhone")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(15)
+                        .HasColumnType("nvarchar(15)");
 
                     b.HasKey("UserId");
 
                     b.HasIndex("AreaId");
 
                     b.HasIndex("CityId");
+
+                    b.HasIndex("PackageId");
 
                     b.HasIndex("RoleId");
 
@@ -380,15 +438,20 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserComplainId"));
 
-                    b.Property<int>("ComplainId")
+                    b.Property<int?>("ComplainId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("PackageId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("UserComplainId");
 
                     b.HasIndex("ComplainId");
+
+                    b.HasIndex("PackageId");
 
                     b.HasIndex("UserId");
 
@@ -403,13 +466,13 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("UserPackageId"));
 
-                    b.Property<int>("PackageId")
+                    b.Property<int?>("PackageId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("PackageStartDate")
+                    b.Property<DateTime?>("PackageStartDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("UserPackageId");
@@ -421,13 +484,30 @@ namespace CRM_ISP.Migrations
                     b.ToTable("UsersPackages");
                 });
 
+            modelBuilder.Entity("CRM_ISP.Models.UserRoles", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("RoleId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserEmail")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("UserRoles");
+                });
+
             modelBuilder.Entity("CRM_ISP.Models.Admin", b =>
                 {
                     b.HasOne("CRM_ISP.Models.Role", "Role")
                         .WithMany("Admins")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.Navigation("Role");
                 });
@@ -436,15 +516,11 @@ namespace CRM_ISP.Migrations
                 {
                     b.HasOne("CRM_ISP.Models.Package", "Package")
                         .WithMany("Billings")
-                        .HasForeignKey("PackageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PackageId");
 
                     b.HasOne("CRM_ISP.Models.User", "User")
                         .WithMany("Billings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Package");
 
@@ -455,9 +531,7 @@ namespace CRM_ISP.Migrations
                 {
                     b.HasOne("CRM_ISP.Models.Complain", "Complain")
                         .WithMany("ComplainStatuses")
-                        .HasForeignKey("ComplainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ComplainId");
 
                     b.Navigation("Complain");
                 });
@@ -465,16 +539,12 @@ namespace CRM_ISP.Migrations
             modelBuilder.Entity("CRM_ISP.Models.Feedback", b =>
                 {
                     b.HasOne("CRM_ISP.Models.Complain", "Complain")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("ComplainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("FeedBacks")
+                        .HasForeignKey("ComplainId");
 
                     b.HasOne("CRM_ISP.Models.User", "User")
-                        .WithMany("Feedbacks")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany("FeedBacks")
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Complain");
 
@@ -485,15 +555,11 @@ namespace CRM_ISP.Migrations
                 {
                     b.HasOne("CRM_ISP.Models.Area", "Area")
                         .WithMany("SupportEngineers")
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AreaId");
 
                     b.HasOne("CRM_ISP.Models.Role", "Role")
                         .WithMany("SupportEngineers")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.Navigation("Area");
 
@@ -504,25 +570,25 @@ namespace CRM_ISP.Migrations
                 {
                     b.HasOne("CRM_ISP.Models.Area", "Area")
                         .WithMany("Users")
-                        .HasForeignKey("AreaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("AreaId");
 
                     b.HasOne("CRM_ISP.Models.City", "City")
                         .WithMany("Users")
-                        .HasForeignKey("CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CityId");
+
+                    b.HasOne("CRM_ISP.Models.Package", "Package")
+                        .WithMany("Users")
+                        .HasForeignKey("PackageId");
 
                     b.HasOne("CRM_ISP.Models.Role", "Role")
                         .WithMany("Users")
-                        .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("RoleId");
 
                     b.Navigation("Area");
 
                     b.Navigation("City");
+
+                    b.Navigation("Package");
 
                     b.Navigation("Role");
                 });
@@ -531,17 +597,19 @@ namespace CRM_ISP.Migrations
                 {
                     b.HasOne("CRM_ISP.Models.Complain", "Complain")
                         .WithMany("UserComplains")
-                        .HasForeignKey("ComplainId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ComplainId");
+
+                    b.HasOne("CRM_ISP.Models.Package", "Package")
+                        .WithMany("UserComplains")
+                        .HasForeignKey("PackageId");
 
                     b.HasOne("CRM_ISP.Models.User", "User")
                         .WithMany("UserComplains")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Complain");
+
+                    b.Navigation("Package");
 
                     b.Navigation("User");
                 });
@@ -549,16 +617,12 @@ namespace CRM_ISP.Migrations
             modelBuilder.Entity("CRM_ISP.Models.UserPackage", b =>
                 {
                     b.HasOne("CRM_ISP.Models.Package", "Package")
-                        .WithMany("UserPackages")
-                        .HasForeignKey("PackageId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("PackageId");
 
                     b.HasOne("CRM_ISP.Models.User", "User")
-                        .WithMany("UserPackages")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .WithMany()
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Package");
 
@@ -581,7 +645,7 @@ namespace CRM_ISP.Migrations
                 {
                     b.Navigation("ComplainStatuses");
 
-                    b.Navigation("Feedbacks");
+                    b.Navigation("FeedBacks");
 
                     b.Navigation("UserComplains");
                 });
@@ -590,7 +654,9 @@ namespace CRM_ISP.Migrations
                 {
                     b.Navigation("Billings");
 
-                    b.Navigation("UserPackages");
+                    b.Navigation("UserComplains");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("CRM_ISP.Models.Role", b =>
@@ -606,11 +672,9 @@ namespace CRM_ISP.Migrations
                 {
                     b.Navigation("Billings");
 
-                    b.Navigation("Feedbacks");
+                    b.Navigation("FeedBacks");
 
                     b.Navigation("UserComplains");
-
-                    b.Navigation("UserPackages");
                 });
 #pragma warning restore 612, 618
         }

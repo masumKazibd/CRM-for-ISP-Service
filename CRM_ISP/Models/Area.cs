@@ -4,21 +4,17 @@ namespace CRM_ISP.Models
 {
     public class Area
     {
-        public Area()
-        {
-            //this.Complains =  new List<Complain>();
-            this.SupportEngineers = new List<SupportEngineer>();
-            this.Users = new List<User>();
-        }
         public int AreaId { get; set; }
-        [Required, Display(Name = "Area Name")]
-        public string AreaName { get; set; } = default!;
-        [Required, Display(Name = "Post Code")]
-        public string PostCode { get; set; } = default!;
+        [Required(ErrorMessage = "Area name is required"), StringLength(70), Display(Name = "Area Name")]
 
-        //public virtual ICollection<Complain>? Complains { get; set; }
-        public virtual ICollection<SupportEngineer>? SupportEngineers { get; set; }
-        public virtual ICollection<User>? Users { get; set; }
+        public string AreaName { get; set; } = null!;
+        [Display(Name = "Post Code")]
+
+        public int PostCode { get; set; }
+
+        public virtual ICollection<SupportEngineer>? SupportEngineers { get; set; } = new List<SupportEngineer>();
+
+        public virtual ICollection<User>? Users { get; set; } = new List<User>();
 
     }
 }

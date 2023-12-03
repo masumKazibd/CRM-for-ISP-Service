@@ -5,34 +5,22 @@ namespace CRM_ISP.Models
 {
     public class Complain
     {
-        public Complain()
-        {
-            this.ComplainStatuses = new List<ComplainStatus>();
-            this.Feedbacks = new List<Feedback>();
-            this.UserComplains = new List<UserComplain>();
-        }
         public int ComplainId { get; set; }
-        [Required, Display(Name = "Complain Type")]
-        public string ComplainType { get; set; } = default!;
-        [Required, Display(Name = "Complain Details")]
-        public string ComplainDetails { get; set; } = default!;
-        public DateTime ComplainDate { get; set; } = DateTime.Now;
+        [Required, StringLength(100), Display(Name = "Complain Type")]
 
-        ////Foreign Key
-        //[ForeignKey("User")]
-        //public int UserId { get; set; }
-        //[ForeignKey("Area")]
-        //public int AreaId { get; set; }
+        public string ComplainType { get; set; } = null!;
+        [Required(ErrorMessage = "Please type details"), StringLength(150), Display(Name = "Complain Details")]
 
+        public string ComplainDetails { get; set; } = null!;
+        [Required(ErrorMessage = "Please enter date"), Column(TypeName = "date"), Display(Name = "Complain Date"), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
 
-        //public  virtual User? User { get; set; }
-        //public virtual Area? Area { get; set; }
+        public DateTime ComplaintDate { get; set; } = DateTime.Now;
 
-        public virtual ICollection<ComplainStatus>? ComplainStatuses { get; set; }
-        public virtual ICollection<UserComplain> UserComplains { get; set; }
-        public virtual ICollection<Feedback>? Feedbacks { get; set; }
+        public virtual ICollection<ComplainStatus>? ComplainStatuses { get; set; } = new List<ComplainStatus>();
 
+        public virtual ICollection<Feedback>? FeedBacks { get; set; } = new List<Feedback>();
 
+        public virtual ICollection<UserComplain>? UserComplains { get; set; } = new List<UserComplain>();
 
     }
 }

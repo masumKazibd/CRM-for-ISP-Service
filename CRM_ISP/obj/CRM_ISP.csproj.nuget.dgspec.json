@@ -1,31 +1,17 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
-    "D:\\final project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj": {}
+    "F:\\Masum Kazi_CS-1279032\\Final Project\\4 December 2023\\CRM_ISP - For PostMan\\CRM_ISP - For PostMan\\CRM_ISP\\CRM_ISP.csproj": {}
   },
   "projects": {
-    "D:\\final project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj": {
+    "F:\\Masum Kazi_CS-1279032\\Final Project\\4 December 2023\\CRM_ISP - For PostMan\\CRM_ISP - For PostMan\\CRM_ISP\\CRM_ISP.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\final project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
+        "projectUniqueName": "F:\\Masum Kazi_CS-1279032\\Final Project\\4 December 2023\\CRM_ISP - For PostMan\\CRM_ISP - For PostMan\\CRM_ISP\\CRM_ISP.csproj",
         "projectName": "CRM_ISP",
-        "projectPath": "D:\\final project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
+        "projectPath": "F:\\Masum Kazi_CS-1279032\\Final Project\\4 December 2023\\CRM_ISP - For PostMan\\CRM_ISP - For PostMan\\CRM_ISP\\CRM_ISP.csproj",
         "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "D:\\final project\\CRM-for-ISP-Service\\CRM_ISP\\obj\\",
-=======
-    "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj": {}
-  },
-  "projects": {
-    "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
-        "projectName": "CRM_ISP",
-        "projectPath": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
-        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\obj\\",
->>>>>>> 87b6422579d884ac1edae5f84e5d4c06125f4353
+        "outputPath": "F:\\Masum Kazi_CS-1279032\\Final Project\\4 December 2023\\CRM_ISP - For PostMan\\CRM_ISP - For PostMan\\CRM_ISP\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -59,6 +45,10 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
             "Microsoft.AspNetCore.Mvc.NewtonsoftJson": {
               "target": "Package",
               "version": "[7.0.14, )"
@@ -93,7 +83,7 @@
             },
             "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
               "target": "Package",
-              "version": "[7.0.9, )"
+              "version": "[7.0.11, )"
             },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
@@ -119,7 +109,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.402\\RuntimeIdentifierGraph.json"
         }
       }
     }

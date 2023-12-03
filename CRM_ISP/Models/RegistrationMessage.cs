@@ -5,7 +5,7 @@ namespace CRM_ISP.Models
     public class RegistrationMessage
     {
         public int RegistrationMessageId { get; set; }
-        [Required, StringLength(200), Display(Name = "Message Body")]
-        public string MessageBody { get; set; } = default!;
+        [Display(Name = "Message Body"), StringLength(500)]
+        public string MessageBody { get; set; } = null!;
     }
 }

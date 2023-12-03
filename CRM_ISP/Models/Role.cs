@@ -4,19 +4,16 @@ namespace CRM_ISP.Models
 {
     public class Role
     {
-        public Role()
-        {
-            this.Admins = new List<Admin>();
-            this.SupportEngineers = new List<SupportEngineer>();
-            this.Users = new List<User>();
-        }
         public int RoleId { get; set; }
-        [Required, StringLength(50), Display(Name = "Role Name")]
-        public string RoleName { get; set; } = default!;
-        //navigation
-        public virtual ICollection<Admin>? Admins { get; set; }
-        public virtual ICollection<SupportEngineer>? SupportEngineers { get; set; }
-        public virtual ICollection<User>? Users { get; set; }
+
+        [Display(Name = "Role Name"), StringLength(50)]
+        public string RoleName { get; set; } = null!;
+
+        public virtual ICollection<Admin>? Admins { get; set; } = new List<Admin>();
+
+        public virtual ICollection<SupportEngineer>? SupportEngineers { get; set; } = new List<SupportEngineer>();
+
+        public virtual ICollection<User>? Users { get; set; } = new List<User>();
 
     }
 }

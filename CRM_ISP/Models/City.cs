@@ -4,14 +4,11 @@ namespace CRM_ISP.Models
 {
     public class City
     {
-        public City()
-        {
-            this.Users = new List<User>();
-        }
         public int CityId { get; set; }
-        [Required, Display(Name = "City Name")]
-        public string CityName { get; set; } = default!;
+        [Required(ErrorMessage = "City name is required"), StringLength(50), Display(Name = "City Name")]
 
-        public virtual ICollection<User>? Users { get; set; }
+        public string CityName { get; set; } = null!;
+
+        public virtual ICollection<User>? Users { get; set; } = new List<User>();
     }
 }
