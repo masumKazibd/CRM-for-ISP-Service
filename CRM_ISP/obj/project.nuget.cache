@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Fu3ER8gLdpYBL/hy01WlMxCPRYyfW0cdBi3Nzske4fvTR8PuzLZI/mswlpPV7GmWFK2GjPlr7jE+1oBaCuSs9g==",
+  "dgSpecHash": "ZCekOoaAdSC3blPxsvoO5lUsX7elPzjv90C3xaGW48Jd2Ki7BpLDUkBXA7tnQ1vOQ4GeI6Q+NnLRPQILvh+BzQ==",
   "success": true,
-  "projectFilePath": "F:\\Masum Kazi_CS-1279032\\Final Project\\4 December 2023\\CRM_ISP - For PostMan\\CRM_ISP - For PostMan\\CRM_ISP\\CRM_ISP.csproj",
+  "projectFilePath": "F:\\Masum Kazi_CS-1279032\\Final Project\\CRM-for-ISP-Service\\CRM_ISP\\CRM_ISP.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\student\\.nuget\\packages\\azure.core\\1.25.0\\azure.core.1.25.0.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\azure.identity\\1.7.0\\azure.identity.1.7.0.nupkg.sha512",
