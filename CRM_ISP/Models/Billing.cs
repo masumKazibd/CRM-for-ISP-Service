@@ -5,6 +5,7 @@ namespace CRM_ISP.Models
 {
     public class Billing
     {
+        [Key]
         public int BillingId { get; set; }
         [Display(Name = "Billing Status")]
 

@@ -7,5 +7,6 @@ namespace CRM_ISP.AuthenticationPart.Interfaces
         public List<Employee> GetEmployeeDetails();
 
         public Employee AddEmployee(Employee employee);
+
     }
 }

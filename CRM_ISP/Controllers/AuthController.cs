@@ -1,6 +1,8 @@
 ﻿using CRM_ISP.AuthenticationPart.Interfaces;
+using CRM_ISP.AuthenticationPart.Services;
 using CRM_ISP.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Data;
 
 namespace CRM_ISP.Controllers
@@ -47,6 +49,18 @@ namespace CRM_ISP.Controllers
             return addUser;
         }
 
+
+        [HttpGet("getUsers")]
+        public List<User> GetUsers()
+        {
+            return _auth.GetUsers();
+        }
+
+        [HttpGet("getTotalUsers")]
+        public int getTotalUsers()
+        {
+            return _auth.getTotalUsers();
+        }
 
         [HttpPost("addRole")]
         public Role AddRole(int id, [FromBody] Role role)

@@ -15,6 +15,7 @@ namespace CRM_ISP.Controllers
     {
         private readonly CrmDbContext _context;
 
+
         public AreasController(CrmDbContext context)
         {
             _context = context;

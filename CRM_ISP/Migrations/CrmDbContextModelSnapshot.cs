@@ -30,10 +30,17 @@ namespace CRM_ISP.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("AdminId"));
 
+                    b.Property<DateTime>("AdminCreateDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("AdminEmail")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<string>("AdminImage")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AdminName")
                         .IsRequired()
@@ -94,6 +101,9 @@ namespace CRM_ISP.Migrations
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("BillingId"));
+
+                    b.Property<DateTime>("BillingDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("BillingStatus")
                         .HasColumnType("bit");
@@ -214,6 +224,9 @@ namespace CRM_ISP.Migrations
                     b.Property<int?>("ComplainId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("FeedbackDate")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Rating")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -245,7 +258,6 @@ namespace CRM_ISP.Migrations
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("PackageId"));
 
                     b.Property<int>("PackageDuration")
-                        .HasMaxLength(50)
                         .HasColumnType("int");
 
                     b.Property<string>("PackageName")
@@ -276,8 +288,8 @@ namespace CRM_ISP.Migrations
 
                     b.Property<string>("MessageBody")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
 
                     b.HasKey("RegistrationMessageId");
 
@@ -315,8 +327,8 @@ namespace CRM_ISP.Migrations
 
                     b.Property<string>("EngineerEmail")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
 
                     b.Property<string>("EngineerGender")
                         .IsRequired()
@@ -343,10 +355,12 @@ namespace CRM_ISP.Migrations
                     b.Property<int?>("RoleId")
                         .HasColumnType("int");
 
-                    b.Property<string>("UserImage")
+                    b.Property<DateTime>("SupportEngineerCreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("SupportEngineerImage")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("SupportEngineerId");
 
@@ -379,40 +393,33 @@ namespace CRM_ISP.Migrations
 
                     b.Property<string>("UserAddress")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("UserCreateDate")
                         .HasColumnType("date");
 
                     b.Property<string>("UserEmail")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserGender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserImage")
-                        .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPassword")
                         .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserPhone")
                         .IsRequired()
-                        .HasMaxLength(15)
-                        .HasColumnType("nvarchar(15)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId");
 
@@ -440,6 +447,9 @@ namespace CRM_ISP.Migrations
 
                     b.Property<int?>("PackageId")
                         .HasColumnType("int");
+
+                    b.Property<DateTime>("UserComplainDate")
+                        .HasColumnType("datetime2");
 
                     b.Property<int?>("UserId")
                         .HasColumnType("int");

@@ -1,4 +1,5 @@
 ﻿using CRM_ISP.Models;
+using Microsoft.EntityFrameworkCore;
 
 namespace CRM_ISP.AuthenticationPart.Interfaces
 {
@@ -13,5 +14,9 @@ namespace CRM_ISP.AuthenticationPart.Interfaces
         Role AddRole(Role role);
 
         bool AssignRoleToUser(AddUserRole obj);
+        List<User> GetUsers();
+        int getTotalUsers();
+
     }
+
 }

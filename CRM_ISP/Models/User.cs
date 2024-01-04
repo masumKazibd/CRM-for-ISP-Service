@@ -6,28 +6,29 @@ namespace CRM_ISP.Models
     public class User
     {
         public int UserId { get; set; }
-        [Required(ErrorMessage = "User Name is required"), Display(Name = "User Name"), StringLength(50)]
+        // [Required(ErrorMessage = "User Name is required"), Display(Name = "User Name"), StringLength(50)]
 
         public string UserName { get; set; } = null!;
-        [Required(ErrorMessage = "User Email is required"), Display(Name = "User Email"), StringLength(50)]
+        //[Required(ErrorMessage = "User Email is required"), Display(Name = "User Email"), StringLength(50)]
 
         public string UserEmail { get; set; } = null!;
-        [Required(ErrorMessage = " Password is required"), Display(Name = "User Password"), StringLength(20)]
+        // [Required(ErrorMessage = " Password is required"), Display(Name = "User Password"), StringLength(20)]
 
         public string UserPassword { get; set; } = null!;
 
-        [Required(ErrorMessage = " Phone number is required"), Display(Name = "User Phone"), StringLength(15)]
+        // [Required(ErrorMessage = " Phone number is required"), Display(Name = "User Phone"), StringLength(15)]
         public string UserPhone { get; set; } = null!;
 
-        [Required(ErrorMessage = " Gender is required"), Display(Name = "User Gender")]
+        //[Required(ErrorMessage = " Gender is required"), Display(Name = "User Gender")]
         public string UserGender { get; set; } = null!;
 
-        [Required(ErrorMessage = " Image is required"), Display(Name = "User Image")]
+        // [Required(ErrorMessage = " Image is required"), Display(Name = "User Image")]
         public string? UserImage { get; set; } = null!;
 
-        [Required(ErrorMessage = "User Address is required"), Display(Name = "User Address"), StringLength(50)]
+        // [Required(ErrorMessage = "User Address is required"), Display(Name = "User Address"), StringLength(50)]
         public string UserAddress { get; set; } = null!;
-        [Required(ErrorMessage = "CreateDate is required"), Column(TypeName = "date"), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true), Display(Name = "Create Date")]
+        //[Required(ErrorMessage = "CreateDate is required")]
+        [ Column(TypeName = "date"), DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true), Display(Name = "Create Date")]
         public DateTime UserCreateDate { get; set; } = DateTime.Now;
 
         [ForeignKey("City")]

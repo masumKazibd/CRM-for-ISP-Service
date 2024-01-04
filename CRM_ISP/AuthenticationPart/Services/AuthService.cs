@@ -69,6 +69,17 @@ namespace CRM_ISP.AuthenticationPart.Services
 
         }
 
+        public List<User> GetUsers()
+        {
+            var users = _context.Users.ToList();
+            return users;
+        }
+        public int getTotalUsers()
+        {
+            var totalUser = _context.Users.Count();
+            return totalUser;
+        }
+
         public string LogIn(LoginRequest loginRequest)
         {
             if (loginRequest.UserEmail != null && loginRequest.Password != null)

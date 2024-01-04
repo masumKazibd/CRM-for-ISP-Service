@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CRM_ISP.Models;
+using System.IO;
+using CRM_ISP.AuthenticationPart.Interfaces;
 
 namespace CRM_ISP.Controllers
 {
@@ -13,11 +15,12 @@ namespace CRM_ISP.Controllers
     [ApiController]
     public class BillingsController : ControllerBase
     {
-        private readonly CrmDbContext _context;
+        private CrmDbContext _context;
 
         public BillingsController(CrmDbContext context)
         {
             _context = context;
+
         }
 
         [HttpGet]
@@ -45,6 +48,20 @@ namespace CRM_ISP.Controllers
             }
 
             return billing;
+        }
+
+        [HttpGet("getMaxBillingId")]
+        public int getMaxBillingId()
+        {
+            var maxBillingId = _context.Billings.Max(x => x.BillingId);
+            return maxBillingId;
+        }
+
+        [HttpGet("getTotalBillings")]
+        public int getTotalBillings()
+        {
+            var totalBillings = _context.Billings.Count();
+            return totalBillings;
         }
 
         [HttpPut("{id}")]

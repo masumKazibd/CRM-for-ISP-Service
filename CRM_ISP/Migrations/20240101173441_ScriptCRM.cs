@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace CRM_ISP.Migrations
 {
     /// <inheritdoc />
-    public partial class ScriptA : Migration
+    public partial class ScriptCRM : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -77,7 +77,7 @@ namespace CRM_ISP.Migrations
                     PackageName = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
                     PackagePrice = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
                     PackageType = table.Column<string>(type: "nvarchar(60)", maxLength: 60, nullable: false),
-                    PackageDuration = table.Column<int>(type: "int", maxLength: 50, nullable: false)
+                    PackageDuration = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -90,7 +90,7 @@ namespace CRM_ISP.Migrations
                 {
                     RegistrationMessageId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MessageBody = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false)
+                    MessageBody = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: false)
                 },
                 constraints: table =>
                 {
@@ -153,8 +153,10 @@ namespace CRM_ISP.Migrations
                     AdminEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     Gender = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     JoinDate = table.Column<DateTime>(type: "date", nullable: false),
+                    AdminImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Phone = table.Column<int>(type: "int", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    AdminCreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     RoleId = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
@@ -174,12 +176,13 @@ namespace CRM_ISP.Migrations
                     SupportEngineerId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     EngineerName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    EngineerEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    EngineerEmail = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     EngineerJoinDate = table.Column<DateTime>(type: "date", nullable: false),
                     EngineerGender = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserImage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SupportEngineerImage = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     EngineerPhone = table.Column<int>(type: "int", maxLength: 50, nullable: false),
                     EngineerPassword = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    SupportEngineerCreateDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     AreaId = table.Column<int>(type: "int", nullable: true),
                     RoleId = table.Column<int>(type: "int", nullable: true)
                 },
@@ -204,13 +207,13 @@ namespace CRM_ISP.Migrations
                 {
                     UserId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserName = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserEmail = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserPassword = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    UserPhone = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserEmail = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserPassword = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    UserPhone = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserGender = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    UserImage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
-                    UserAddress = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
+                    UserImage = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    UserAddress = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     UserCreateDate = table.Column<DateTime>(type: "date", nullable: false),
                     CityId = table.Column<int>(type: "int", nullable: true),
                     AreaId = table.Column<int>(type: "int", nullable: true),
@@ -250,7 +253,8 @@ namespace CRM_ISP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     BillingStatus = table.Column<bool>(type: "bit", nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
-                    PackageId = table.Column<int>(type: "int", nullable: true)
+                    PackageId = table.Column<int>(type: "int", nullable: true),
+                    BillingDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -276,7 +280,8 @@ namespace CRM_ISP.Migrations
                     Rating = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     RatingMessage = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     UserId = table.Column<int>(type: "int", nullable: true),
-                    ComplainId = table.Column<int>(type: "int", nullable: true)
+                    ComplainId = table.Column<int>(type: "int", nullable: true),
+                    FeedbackDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -301,7 +306,8 @@ namespace CRM_ISP.Migrations
                         .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<int>(type: "int", nullable: true),
                     ComplainId = table.Column<int>(type: "int", nullable: true),
-                    PackageId = table.Column<int>(type: "int", nullable: true)
+                    PackageId = table.Column<int>(type: "int", nullable: true),
+                    UserComplainDate = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
